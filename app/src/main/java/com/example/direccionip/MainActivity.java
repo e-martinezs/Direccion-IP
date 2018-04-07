@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     int netmask[] = new int[4];
     int netid[] = new int[4];
     int broadcast[] = new int[4];
+    int hostNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,19 +58,20 @@ public class MainActivity extends AppCompatActivity {
 
         //Crea la mascara de red y la mascara de red invertida
         int netmaskInput = Integer.parseInt(netmaskEditText.getText().toString());
+        int auxNetmask= netmaskInput;
         int hostmask[] = new int[4];
         for (int i=0; i<4; i++){
-            if (netmaskInput - 8 >= 0){
+            if (auxNetmask - 8 >= 0){
                 netmask[i] = 255;
                 hostmask[i] = 0;
             }else {
-                if (netmaskInput < 0){
-                    netmaskInput = 0;
+                if (auxNetmask < 0){
+                    auxNetmask = 0;
                 }
-                netmask[i] = (int)(Math.pow(2,8)-Math.pow(2,8-netmaskInput));
-                hostmask[i] = (int)(Math.pow(2,8-netmaskInput)-1);
+                netmask[i] = (int)(Math.pow(2,8)-Math.pow(2,8-auxNetmask));
+                hostmask[i] = (int)(Math.pow(2,8-auxNetmask)-1);
             }
-            netmaskInput -= 8;
+            auxNetmask -= 8;
         }
 
         //Calculo de netID
@@ -84,5 +86,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d("TEST",hostmask[i]+"");
         }
         broadcastTextView.setText(broadcast[0]+"."+broadcast[1]+"."+broadcast[2]+"."+broadcast[3]);
+
+        //Calculo de numero de hosts
+        hostNumber = (int)Math.pow(2,32-netmaskInput)-2;
+        hostnumberTextView.setText(hostNumber+"");
     }
 }
