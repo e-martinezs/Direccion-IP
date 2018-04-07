@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">DireccionIP</string>
+    <string name="ip_label">IP</string>
+    <string name="netmask_label">Máscara</string>
+    <string name="net_id_label">Net ID</string>
+    <string name="broadcast_label">Broadcast</string>
+    <string name="host_number_label">Cantidad de hosts</string>
+    <string name="network_label">Parte de red</string>
+    <string name="host_label">Parte de host</string>
+    <string name="slash_label">/</string>
 </resources>
