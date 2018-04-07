@@ -2,6 +2,8 @@ package com.example.direccionip;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     TextView hostnumberTextView;
     TextView networkTextView;
     TextView hostTextView;
-    Button calculateButton;
 
     int ip[] = new int[4];
     int netmask[] = new int[4];
@@ -41,11 +42,39 @@ public class MainActivity extends AppCompatActivity {
         hostnumberTextView = findViewById(R.id.hostNumberTextView);
         networkTextView = findViewById(R.id.networkTextView);
         hostTextView = findViewById(R.id.hostTextView);
-        calculateButton = findViewById(R.id.calculateButton);
 
-        calculateButton.setOnClickListener(new View.OnClickListener(){
+        ipEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v){
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (validateInputs()){
+                    calculate();
+                }
+            }
+        });
+
+        netmaskEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
                 if (validateInputs()){
                     calculate();
                 }

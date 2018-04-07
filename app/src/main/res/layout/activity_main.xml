@@ -144,16 +144,4 @@
                 android:layout_margin="4dp" />
         </TableRow>
     </TableLayout>
-
-    <Button
-        android:id="@+id/calculateButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/button_label"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="8"/>
 </LinearLayout>
