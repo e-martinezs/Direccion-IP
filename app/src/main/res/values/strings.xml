@@ -9,4 +9,8 @@
     <string name="host_label">Parte de host</string>
     <string name="slash_label">/</string>
     <string name="button_label">Calcular</string>
+    <string name="blank_error">Este campo no puede ir vacío</string>
+    <string name="format_error">Debe estar en formato xxx.xxx.xxx.xxx</string>
+    <string name="ip_range_error">Uno de los octetos está fuera del rango [0-255]</string>
+    <string name="netmask_range_error">La máscara esta fuera de rango [1-31]</string>
 </resources>

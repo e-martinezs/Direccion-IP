@@ -46,18 +46,14 @@ public class MainActivity extends AppCompatActivity {
         calculateButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                calculate();
+                if (validateInputs()){
+                    calculate();
+                }
             }
         });
     }
 
     private void calculate(){
-        //Convierte la ip de string a int
-        String ipInput[] = ipEditText.getText().toString().split("\\.");
-        for (int i=0; i<4; i++){
-            ip[i] = Integer.parseInt(ipInput[i]);
-        }
-
         //Crea la mascara de red y la mascara de red invertida
         int netmaskInput = Integer.parseInt(netmaskEditText.getText().toString());
         int auxNetmask= netmaskInput;
@@ -104,5 +100,62 @@ public class MainActivity extends AppCompatActivity {
             host[i] = ip[i] & hostmask[i];
         }
         hostTextView.setText(host[0]+"."+host[1]+"."+host[2]+"."+host[3]);
+    }
+
+    private boolean validateInputs(){
+        String ipText = ipEditText.getText().toString();
+        String netmaskText = netmaskEditText.getText().toString();
+
+        //Verifica si el campo de ip esta vacio
+        if (ipText.equals("")){
+            ipEditText.setError(getString(R.string.blank_error));
+            return false;
+        }else{
+            ipEditText.setError(null);
+        }
+
+        //Verifica si la ip tiene el formato correcto
+        String ipRegex = "[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}";
+        if (!ipText.matches(ipRegex)){
+            ipEditText.setError(getString(R.string.format_error));
+            return false;
+        }else{
+            ipEditText.setError(null);
+        }
+
+        //Convierte la ip de string a int
+        String ipInput[] = ipEditText.getText().toString().split("\\.");
+        for (int i=0; i<4; i++){
+            ip[i] = Integer.parseInt(ipInput[i]);
+        }
+
+        //Verifica si algun octeto de la ip esta fuera de rango
+        for (int i=0; i<4; i++){
+           if (ip[i] < 0 || ip[i] > 255){
+               ipEditText.setError(getString(R.string.ip_range_error));
+               return false;
+           }else{
+               ipEditText.setError(null);
+           }
+        }
+
+        //Verifica si el campo de mascara esta vacio
+        if (netmaskText.equals("")){
+            netmaskEditText.setError(getString(R.string.blank_error));
+            return false;
+        }else{
+            networkTextView.setError(null);
+        }
+
+        //Verifica si la mascara esta fuera de rango
+        int netmask = Integer.parseInt(netmaskEditText.getText().toString());
+        if (netmask < 1 || netmask > 31){
+            netmaskEditText.setError(getString(R.string.netmask_range_error));
+            return false;
+        }else{
+            netmaskEditText.setError(null);
+        }
+
+        return true;
     }
 }
