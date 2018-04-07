@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     int netid[] = new int[4];
     int broadcast[] = new int[4];
     int hostNumber;
+    int network[] = new int[4];
+    int host[] = new int[4];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,5 +92,17 @@ public class MainActivity extends AppCompatActivity {
         //Calculo de numero de hosts
         hostNumber = (int)Math.pow(2,32-netmaskInput)-2;
         hostnumberTextView.setText(hostNumber+"");
+
+        //Calculo parte de red
+        for (int i=0; i<4; i++){
+            network[i] = ip[i] & netmask[i];
+        }
+        networkTextView.setText(network[0]+"."+network[1]+"."+network[2]+"."+network[3]);
+
+        //Calculo parte de host
+        for (int i=0; i<4; i++){
+            host[i] = ip[i] & hostmask[i];
+        }
+        hostTextView.setText(host[0]+"."+host[1]+"."+host[2]+"."+host[3]);
     }
 }
