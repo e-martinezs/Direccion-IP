@@ -1,16 +1,15 @@
 <resources>
-    <string name="app_name">DireccionIP</string>
+    <string name="app_name">IP Calculator</string>
     <string name="ip_label">IP</string>
-    <string name="netmask_label">Máscara</string>
+    <string name="netmask_label">Netmask</string>
     <string name="net_id_label">Net ID</string>
     <string name="broadcast_label">Broadcast</string>
-    <string name="host_number_label">Cantidad de hosts</string>
-    <string name="network_label">Parte de red</string>
-    <string name="host_label">Parte de host</string>
+    <string name="host_number_label">Number of hosts</string>
+    <string name="network_label">Network part</string>
+    <string name="host_label">Host part</string>
     <string name="slash_label">/</string>
-    <string name="button_label">Calcular</string>
-    <string name="blank_error">Este campo no puede ir vacío</string>
-    <string name="format_error">Debe estar en formato xxx.xxx.xxx.xxx</string>
-    <string name="ip_range_error">Uno de los octetos está fuera del rango [0-255]</string>
-    <string name="netmask_range_error">La máscara esta fuera de rango [1-31]</string>
+    <string name="blank_error">This field cannot be blank</string>
+    <string name="format_error">Must be in format xxx.xxx.xxx.xxx</string>
+    <string name="ip_range_error">One of the octets is out of range [0-255]</string>
+    <string name="netmask_range_error">The netmask is out of range [1-31]</string>
 </resources>
